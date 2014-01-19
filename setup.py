@@ -14,6 +14,7 @@ setup(
     download_url = "https://github.com/tiagomacarios/pybtsync",
     packages = ['pybtsync',
                 ],
+    install_requires = ["requests"],
     license = open('LICENSE').readline(),
     keywords = "bittorrent sync api",
     classifiers = [ "Development Status :: 3 - Alpha",

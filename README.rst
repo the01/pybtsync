@@ -1,12 +1,20 @@
 pybtsync
 ========
 
-A Python module for the BitTorrent Sync API.
+tl;dr: A Python module for the BitTorrent Sync API.
 
-:BitTorrent Sync:
+This module enables the use of the BitTorrent Sync API through Python. Long term objective it to provide different levels of wrapping to the API. Currently the module only behaves as a thin library with added nicities (see `documentation <http://pybtsync.readthedocs.org/>`_)
+
+BitTorrent Sync
+---------------
 
 `BitTorrent Sync <http://www.bittorrent.com/sync>`_  by `BitTorrent, Inc <http://www.bittorrent.com/>`_ is a proprietary peer-to-peer file synchronization tool available for Windows, Mac, Linux, Android, iOS and BSD. It can sync files between devices on a local network, or between remote devices over the Internet via secure, distributed P2P technology. [1]_
 
+
+Documentation
+=============
+
+`Read the Docs <http://pybtsync.readthedocs.org/>`_
 
 
 Dependencies
@@ -23,17 +31,32 @@ Below is the list of software which this
 Installation
 ============
 
-Multiple alternatives:
+PyPI
+---------
+
+Using the python package manager is the easiest way to get the module going:
+
+::
+
+   > pip install pybtsync
+   
+::
+
+   > easy_install pybtsync
+   
 
 
 
+Trunk
+---------
 
-Documentation
-=============
+To get the latest code you can clone this Github repository and run the setup script manually.
 
-`Read the Docs <https://readthedocs.org/projects/pybtsync/>`_
+::
 
-
+   > git clone https://github.com/tiagomacarios/pybtsync.git
+   > cd pybtsync
+   > python setup.py
 
 
 
