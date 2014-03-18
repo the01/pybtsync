@@ -157,10 +157,12 @@ class BTSync():
         self._login = login
         self._password = password
         self.preferences = BTSync_preferences(address, port, login, password)
-
-    @property        
-    def folders(self):
-        return self._request_function('get_folders')
+ 
+    def get_folders(self,secret=None):
+        arguments = ''
+        if secret is not None:
+            arguments = 'secret=' + secret
+        return self._request_function('get_folders',arguments = arguments)
         
     def add_folder(self, folder_path, secret=None, selective_sync=0):
         arguments = 'dir=' + folder_path
