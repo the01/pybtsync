@@ -291,7 +291,7 @@ class BTSync_preferences():
     def _request_function(self, method_name, arguments='', key=None):
         URL = 'http://' + self._address + ':' + self._port +'/api?method=' + method_name + '&' + arguments
         request = requests.get(URL, auth=(self._login, self._password))
-        request_data = request.json()
+        request_data = eval(request.text)
         if key is not None:
             return request_data[key]
         return request_data
