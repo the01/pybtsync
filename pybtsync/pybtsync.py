@@ -217,22 +217,20 @@ class BTSync():
         arguments = 'secret=' + secret
         arguments = arguments + '&hosts=' + ",".join(hosts)
         return self._request_function('set_folder_hosts', arguments = arguments)
-    
-        
-    @property
-    def os(self):
+       
+    def get_os(self):
         return self._request_function('get_os', key='os')
 
-    @property
-    def version(self):
+    def get_version(self):
         return self._request_function('get_version', key='version')
 
-    @property
-    def download_speed(self):
+    def get_speed(self):
+        return self._request_function('get_speed')
+    
+    def get_download_speed(self):
         return self._request_function('get_speed', key='download')    
 
-    @property
-    def upload_speed(self):
+    def get_upload_speed(self):
         return self._request_function('get_speed', key='upload')
 
     def shutdown(self):
