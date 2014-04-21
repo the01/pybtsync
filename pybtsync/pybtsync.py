@@ -24,7 +24,7 @@ except:
     pass
 
 
-class BTSync_process():
+class BTSync_process(object):
     def __init__(self, api_key=None,
                  btsync_exec_folder=None, btsync_app=None, 
                  address='127.0.0.1', port=None, login=None, password=None):
@@ -32,6 +32,8 @@ class BTSync_process():
             api_key = os.environ['PYBTSYNC_APIKEY']
         if btsync_exec_folder is None:
             self.btsync_exec_folder = tempfile.mkdtemp()
+        else:
+            self.btsync_exec_folder = btsync_exec_folder
         if btsync_app is None:
                 if btsync_exec_folder is None:
                     btsync_app = self.download_btsync(self.btsync_exec_folder)
@@ -150,7 +152,7 @@ class BTSync_process():
             self.btsync_process = subprocess.Popen([btsync_app, '--config', btsync_conf_file])
         #TODO: put some check if it started correctly
 
-class BTSync():
+class BTSync(object):
     def __init__(self, address, port, login, password):
         self._address = address
         self._port = port
@@ -244,7 +246,7 @@ class BTSync():
             return request_data[key]
         return request_data
 
-class BTSync_preferences():
+class BTSync_preferences(object):
     def __init__(self, address, port, login, password):
         self._address = address
         self._port = port
