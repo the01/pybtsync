@@ -16,11 +16,18 @@ import uuid
 import subprocess
 import io
 import tarfile
+import time
+import logging
 
 import requests
 try:
     import pydevd
 except:
+    pass
+psutil = None
+try:
+    import psutil
+except ImportError:
     pass
 
 
@@ -150,7 +157,27 @@ class BTSync_process(object):
             self.btsync_process = subprocess.Popen([btsync_app, '/config', btsync_conf_file])
         else:
             self.btsync_process = subprocess.Popen([btsync_app, '--config', btsync_conf_file])
-        #TODO: put some check if it started correctly
+        is_running = self.is_btsync_running(btsync_app)
+        if is_running is not None:
+            count = 0
+            while not is_running and count < 3:
+                time.sleep(1)
+                count += 1
+                is_running = self.is_btsync_running(btsync_app)
+            if not is_running:
+                logging.warn("BTSync is not running")
+
+    def is_btsync_running(self, btsync_app):
+        if not psutil:
+            # psutil not installed
+            return None
+        for i in psutil.get_pid_list():
+            try:
+                if os.path.basename(btsync_app) == psutil.Process(i).name:
+                    return True
+            except:
+                pass
+        return False
 
 class BTSync(object):
     def __init__(self, address, port, login, password):
